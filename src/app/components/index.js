@@ -1,15 +1,29 @@
 'use strict';
 
 import React from 'react';
+import { OrganizationList } from './organization';
+import { connect } from 'react-redux';
 
-const indexComponent = React.createClass({
+const App = React.createClass({
   render() {
+    let organizations = [{
+      name: 'Foo'
+    }];
+    const { orgs } = this.props;
     return (
       <div>
-        <h1>Hello</h1>
+        <h1>Your Organizations</h1>
+        <OrganizationList organizations={organizations} />
       </div>
-      );
+    );
   }
 });
 
-module.exports = indexComponent;
+function select(state) {
+  return {
+    organizations: state.organizations
+  };
+}
+
+
+export default connect(select)(App);
