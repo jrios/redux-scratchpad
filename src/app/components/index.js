@@ -2,18 +2,25 @@
 
 import React from 'react';
 import { OrganizationList } from './organization';
+import { loadOrganizationMembers } from '../actions/organizationActions';
 import { connect } from 'react-redux';
 
 const App = React.createClass({
   render() {
-    let organizations = [{
-      name: 'Foo'
-    }];
-    const { orgs } = this.props;
+    const { dispatch, organizations, members } = this.props;
     return (
       <div>
-        <h1>Your Organizations</h1>
-        <OrganizationList organizations={organizations} />
+        <h1>Organizations</h1>
+        <OrganizationList organizations={organizations} 
+          onAddOrganization={index => dispatch(loadOrganizationMembers(index)) } />
+        <div>
+          <h2>Members</h2>
+          <ul>
+            {members.map(member => {
+              return <li>{member.name}</li>;
+            })}
+          </ul>
+        </div>
       </div>
     );
   }
@@ -21,9 +28,9 @@ const App = React.createClass({
 
 function select(state) {
   return {
-    organizations: state.organizations
+    organizations: state.organizations,
+    members: state.members
   };
 }
-
 
 export default connect(select)(App);

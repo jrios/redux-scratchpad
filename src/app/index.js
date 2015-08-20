@@ -1,17 +1,18 @@
 'use strict';
 
+import 'babel-core/polyfill';
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import { App } from './components';
+import App from './components';
 
 import { configureStore } from './store/configureStore';
 
 let organizations = [
       {
         id: 1,
-        name: 'Towers Watson',
-        url: 'http://towerswatson.com'        
+        name: 'Twitter',
+        url: 'http://twitter.com'        
       },
       {
         id: 2,
@@ -25,7 +26,14 @@ let organizations = [
       }
     ];
 
-let store = configureStore(organizations);
+let members = [];
+
+let initialState = {
+  organizations: organizations,
+  members: members
+};
+
+let store = configureStore(initialState);
 let mountNode = document.getElementById('root');
 
 React.render(

@@ -1,31 +1,33 @@
 'use strict';
 
 import React from 'react';
+import loadOrganizationMembers from '../actions/organizationActions';
 
 const Organization = React.createClass({
-  loadOrganizationMembers() {
-    console.log(this.props.url);
-  },
   render() {
     return (
-      <li>
-        <a href="#" onClick={this.loadOrganizationMembers}>{this.props.organizationName}</a>
-      </li>
+      <div className="organization">
+        <img src="http://placehold.it/75x75" />
+        <span>{this.props.organizationName}</span>
+        <button onClick={this.props.onOrganizationClick}>
+          Add Organization
+        </button>
+      </div>
     );
   }
 });
 
 const OrganizationList = React.createClass({
   getOrganizations(orgs) {
-    return orgs.map(org => {
-      return <Organization organizationName={org.name} url={org.url} />;
+    return orgs.map((org, index) => {
+      return <Organization key={org.id} organizationName={org.name} url={org.url} onOrganizationClick={() => this.props.onAddOrganization(index)}/>;
     });
   },
   render() {
     return (
-      <ul>
+      <div>
         {this.getOrganizations(this.props.organizations)}
-      </ul>)
+      </div>)
   }
 });
 
