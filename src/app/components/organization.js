@@ -20,7 +20,9 @@ const Organization = React.createClass({
 const OrganizationList = React.createClass({
   getOrganizations(orgs) {
     return orgs.map((org, index) => {
-      return <Organization key={org.id} organizationName={org.name} url={org.url} onOrganizationClick={() => this.props.onAddOrganization(index)}/>;
+      return <Organization key={org.id} organizationName={org.name} 
+        url={org.url} 
+        onOrganizationClick={() => this.props.onAddOrganization(index)}/>;
     });
   },
   render() {
