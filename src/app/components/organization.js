@@ -33,4 +33,4 @@ const OrganizationList = React.createClass({
   }
 });
 
-export { OrganizationList };
+export { Organization, OrganizationList };

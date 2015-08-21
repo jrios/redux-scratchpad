@@ -4,7 +4,8 @@
   "description": "Testing out redux",
   "main": "app.js",
   "scripts": {
-    "test": "babel-node ./src/test/index.js | tap-dot"
+    "test": "babel-node ./src/test/index.js | tap-dot",
+    "test:ui": "babel-node ./src/test/index.js | tap-dot"
   },
   "author": "Jake Rios",
   "license": "MIT",

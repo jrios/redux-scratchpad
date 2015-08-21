@@ -8,6 +8,7 @@ export function organizationsReducer(state = {}, action) {
   switch(action.type) {
     case 'LOAD_MEMBERS':
       var member;
+
       if(action.index == 0) {
         member = { name: 'Twitter member' };
       }
@@ -17,9 +18,13 @@ export function organizationsReducer(state = {}, action) {
       if(action.index == 2) {
         member = { name: 'Facebook member' };
       }
-      return Object.assign({}, state, {
-        members: [...state.members, member]
-      });
+      if(member !== undefined) {
+        return Object.assign({}, state, {
+          members: [...state.members, member]
+        });
+      }
+      return state;
+
     default:
       return state;
   }
